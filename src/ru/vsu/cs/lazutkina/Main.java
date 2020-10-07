@@ -12,38 +12,27 @@ public class Main
 
         double widthHole = readDouble("width", "hole");
         double heightHole = readDouble("height", "hole");
-
-        checkBrickEntry(widthHole, heightHole, minimum(length, height, width), medium(length, height, width));
+        
+        outputResult(widthHole, heightHole, length, height, width);
     }
 
     private static double readDouble(String sizeName, String name)
     {
         Scanner scn = new Scanner(System.in);
-        System.out.printf("Input the %s of the %s: ",sizeName, name);
+        System.out.printf("Input the %s of the %s: ", sizeName, name);
         return checkPositiveAndZero(scn.nextDouble());
     }
 
-    private static void checkBrickEntry(double widthHole, double heightHole, double smallerSideBrick, double middleSideBrick)
+    private static boolean checkBrickEntry(double widthHole, double heightHole, double length, double height, double width)
     {
-        if ((widthHole * heightHole) < (smallerSideBrick * middleSideBrick))
-        {
-            printBrickNotEnters();
-        }
-        else if (checkSide(Math.max(widthHole, heightHole), Math.min(widthHole, heightHole), middleSideBrick, smallerSideBrick))
-        {
-            printBrickEnters();
-        }
-        else
-            {
-                printBrickNotEnters();
-            }
+        double smallerSideBrick = minimum(length, height, width);
+        double middleSideBrick = medium(length,height, width);
+        return checkSide(Math.max(widthHole, heightHole), Math.min(widthHole, heightHole), middleSideBrick, smallerSideBrick);
     }
 
     private static boolean checkSide(double biggerSideHole, double smallerSideHole, double middleSideBrick, double smallerSideBrick)
     {
-        if (biggerSideHole >= middleSideBrick && smallerSideHole >= smallerSideBrick)
-            return true;
-        return false;
+        return biggerSideHole >= middleSideBrick && smallerSideHole >= smallerSideBrick;
     }
 
     private static double minimum(double length, double height, double width)
@@ -61,16 +50,6 @@ public class Main
         return (length + height + width - minimum(length, height, width) - maximum(length, height, width));
     }
 
-    private static void printBrickEnters ()
-    {
-        System.out.println("This brick will go through the hole");
-    }
-
-    private static void printBrickNotEnters ()
-    {
-        System.out.println("This brick will not go through the hole");
-    }
-
     private static double checkPositiveAndZero(double number)
     {
         if (number <= 0)
@@ -80,5 +59,16 @@ public class Main
             return checkPositiveAndZero(num.nextDouble());
         }
         else return number;
+    }
+    private static void outputResult (double widthHole, double heightHole, double length, double height, double width)
+    {
+        if (checkBrickEntry(widthHole, heightHole, length, height, width))
+        {
+            System.out.println("This brick will go through the hole");
+        }
+        else
+            {
+            System.out.println("This brick will not go through the hole");
+        }
     }
 }
