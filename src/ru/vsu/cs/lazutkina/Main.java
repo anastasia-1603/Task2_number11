@@ -12,7 +12,7 @@ public class Main
 
         double widthHole = readDouble("width", "hole");
         double heightHole = readDouble("height", "hole");
-        
+
         outputResult(widthHole, heightHole, length, height, width);
     }
 
