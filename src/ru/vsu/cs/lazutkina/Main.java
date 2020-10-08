@@ -27,11 +27,8 @@ public class Main
     {
         double smallerSideBrick = minimum(length, height, width);
         double middleSideBrick = medium(length,height, width);
-        return checkSide(Math.max(widthHole, heightHole), Math.min(widthHole, heightHole), middleSideBrick, smallerSideBrick);
-    }
-
-    private static boolean checkSide(double biggerSideHole, double smallerSideHole, double middleSideBrick, double smallerSideBrick)
-    {
+        double biggerSideHole = Math.max(widthHole, heightHole);
+        double smallerSideHole = Math.min(widthHole, heightHole);
         return biggerSideHole >= middleSideBrick && smallerSideHole >= smallerSideBrick;
     }
 
