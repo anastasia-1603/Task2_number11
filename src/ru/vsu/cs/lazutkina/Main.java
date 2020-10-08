@@ -60,14 +60,13 @@ public class Main
         }
         else return number;
     }
-    private static void outputResult (double widthHole, double heightHole, double length, double height, double width)
+    private static void outputResult(double widthHole, double heightHole, double length, double height, double width)
     {
         if (checkBrickEntry(widthHole, heightHole, length, height, width))
         {
             System.out.println("This brick will go through the hole");
         }
-        else
-            {
+        else {
             System.out.println("This brick will not go through the hole");
         }
     }
