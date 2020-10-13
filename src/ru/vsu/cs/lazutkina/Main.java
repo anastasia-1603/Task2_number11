@@ -6,24 +6,24 @@ public class Main
 {
     public static void main(String[] args)
     {
-        double length = readDouble("length", "brick");
-        double height = readDouble("height", "brick");
-        double width = readDouble("width", "brick");
+        double length = readSideBrickAndHole("length", "brick");
+        double height = readSideBrickAndHole("height", "brick");
+        double width = readSideBrickAndHole("width", "brick");
 
-        double widthHole = readDouble("width", "hole");
-        double heightHole = readDouble("height", "hole");
+        double widthHole = readSideBrickAndHole("width", "hole");
+        double heightHole = readSideBrickAndHole("height", "hole");
 
-        outputResult(widthHole, heightHole, length, height, width);
+        printResult(widthHole, heightHole, length, height, width);
     }
 
-    private static double readDouble(String sizeName, String name)
+    private static double readSideBrickAndHole(String sizeName, String name)
     {
         Scanner scn = new Scanner(System.in);
         System.out.printf("Input the %s of the %s: ", sizeName, name);
         return checkPositiveAndZero(scn.nextDouble());
     }
 
-    private static boolean checkBrickEntry(double widthHole, double heightHole, double length, double height, double width)
+    private static boolean checkBrickGoesThroughTheHole(double widthHole, double heightHole, double length, double height, double width)
     {
         double smallerSideBrick = minimum(length, height, width);
         double middleSideBrick = medium(length,height, width);
@@ -57,14 +57,18 @@ public class Main
         }
         else return number;
     }
-    private static void outputResult(double widthHole, double heightHole, double length, double height, double width)
+    private static void printResult(double widthHole, double heightHole, double length, double height, double width)
     {
-        if (checkBrickEntry(widthHole, heightHole, length, height, width))
+        if (checkBrickGoesThroughTheHole(widthHole, heightHole, length, height, width))
         {
-            System.out.println("This brick will go through the hole");
+           printString("will");
         }
         else {
-            System.out.println("This brick will not go through the hole");
+            printString("will not");
         }
+    }
+    private static void printString (String name)
+    {
+        System.out.printf("This brick %s go through the hole", name);
     }
 }
